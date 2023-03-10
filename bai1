@@ -1,0 +1,48 @@
+class ChuNhat {
+    protected int dai, rong;
+
+    public ChuNhat(int dai, int rong) {
+        this.dai = dai;
+        this.rong = rong;
+    }
+
+    public void xuat() {
+        System.out.println("Hinh chu nhat co chieu dai la " + dai + " va chieu rong la " + rong);
+        System.out.println("Chu vi cua hinh chu nhat la " + tinhChuVi() + " va dien tich la " + tinhDienTich());
+    }
+
+    public int tinhChuVi() {
+        return 2 * (dai + rong);
+    }
+
+    public int tinhDienTich() {
+        return dai * rong;
+    }
+}
+
+class Vuong extends ChuNhat {
+    private int canh;
+
+    public Vuong(int canh) {
+        super(canh, canh);
+        this.canh = canh;
+    }
+
+    @Override
+    public void xuat() {
+        System.out.println("Hinh vuong co canh la " + canh);
+        System.out.println("Chu vi cua hinh vuong la " + tinhChuVi() + " va dien tich la " + tinhDienTich());
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        int dai = 5, rong = 3, canh = 4;
+
+        ChuNhat cn = new ChuNhat(dai, rong);
+        Vuong vu = new Vuong(canh);
+
+        cn.xuat();
+        vu.xuat();
+    }
+}
