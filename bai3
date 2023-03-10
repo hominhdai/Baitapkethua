@@ -1,0 +1,76 @@
+public abstract class SinhVienPoly {
+    protected String hoTen;
+
+    public SinhVienPoly(String hoTen) {
+        this.hoTen = hoTen;
+    }
+
+    public String getHoTen() {
+        return hoTen;
+    }
+
+    public abstract double getDiem();
+
+    public String getHocLuc() {
+        double diem = getDiem();
+        if (diem < 5) {
+            return "Yếu";
+        } else if (diem < 6.5) {
+            return "Trung bình";
+        } else if (diem < 7.5) {
+            return "Khá";
+        } else if (diem < 9) {
+            return "Giỏi";
+        } else {
+            return "Xuất sắc";
+        }
+    }
+}
+
+public class SinhVienIT extends SinhVienPoly {
+    private double diemJava, diemCss, diemHtml;
+
+    public SinhVienIT(String hoTen, double diemJava, double diemCss, double diemHtml) {
+        super(hoTen);
+        this.diemJava = diemJava;
+        this.diemCss = diemCss;
+        this.diemHtml = diemHtml;
+    }
+
+    @Override
+    public double getDiem() {
+        return (2 * diemJava + diemHtml + diemCss) / 4;
+    }
+}
+
+public class SinhVienBiz extends SinhVienPoly {
+    private double diemMarketing, diemSales;
+
+    public SinhVienBiz(String hoTen, double diemMarketing, double diemSales) {
+        super(hoTen);
+        this.diemMarketing = diemMarketing;
+        this.diemSales = diemSales;
+    }
+
+    @Override
+    public double getDiem() {
+        return (2 * diemMarketing + diemSales) / 3;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        SinhVienPoly sv1 = new SinhVienIT("Nguyen Van A", 7, 8, 9);
+        SinhVienPoly sv2 = new SinhVienBiz("Tran Thi B", 6, 7);
+
+        System.out.println("Sinh vien IT: " + sv1.getHoTen());
+        System.out.println("Diem: " + sv1.getDiem());
+        System.out.println("Hoc luc: " + sv1.getHocLuc());
+
+        System.out.println();
+
+        System.out.println("Sinh vien Biz: " + sv2.getHoTen());
+        System.out.println("Diem: " + sv2.getDiem());
+        System.out.println("Hoc luc: " + sv2.getHocLuc());
+    }
+}
