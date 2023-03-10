@@ -1,0 +1,72 @@
+class SinhVien:
+    def __init__(self, ma_sv, ten_sv, diem):
+        self.ma_sv = ma_sv
+        self.ten_sv = ten_sv
+        self.diem = diem
+
+    def in_thong_tin(self):
+        print("Mã sinh viên:", self.ma_sv)
+        print("Tên sinh viên:", self.ten_sv)
+        print("Điểm:", self.diem)
+
+    def hoc_luc_gioi(self):
+        return self.diem >= 8.0
+
+    def __lt__(self, other):
+        return self.diem < other.diem
+
+# Hàm nhập danh sách sinh viên
+def nhap_danh_sach():
+    danh_sach = []
+    n = int(input("Nhập số lượng sinh viên: "))
+    for i in range(n):
+        ma_sv = input("Nhập mã sinh viên: ")
+        ten_sv = input("Nhập tên sinh viên: ")
+        diem = float(input("Nhập điểm sinh viên: "))
+        sinh_vien = SinhVien(ma_sv, ten_sv, diem)
+        danh_sach.append(sinh_vien)
+    return danh_sach
+
+# Hàm xuất danh sách sinh viên
+def xuat_danh_sach(danh_sach):
+    for sinh_vien in danh_sach:
+        sinh_vien.in_thong_tin()
+
+# Hàm xuất danh sách sinh viên có học lực giỏi
+def xuat_danh_sach_hoc_luc_gioi(danh_sach):
+    for sinh_vien in danh_sach:
+        if sinh_vien.hoc_luc_gioi():
+            sinh_vien.in_thong_tin()
+
+# Hàm sắp xếp danh sách sinh viên theo điểm
+def sap_xep_danh_sach(danh_sach):
+    danh_sach.sort(reverse=True)
+
+# Chương trình chính
+danh_sach = []
+
+while True:
+    print("""
+    CHƯƠNG TRÌNH QUẢN LÝ SINH VIÊN
+    1. Nhập danh sách sinh viên
+    2. Xuất thông tin danh sách sinh viên
+    3. Xuất danh sách sinh viên có học lực giỏi
+    4. Sắp xếp danh sách sinh viên theo điểm
+    5. Kết thúc
+    """)
+
+    lua_chon = int(input("Nhập lựa chọn của bạn: "))
+
+    if lua_chon == 1:
+        danh_sach = nhap_danh_sach()
+    elif lua_chon == 2:
+        xuat_danh_sach(danh_sach)
+    elif lua_chon == 3:
+        xuat_danh_sach_hoc_luc_gioi(danh_sach)
+    elif lua_chon == 4:
+        sap_xep_danh_sach(danh_sach)
+    elif lua_chon == 5:
+        print("Kết thúc chương trình")
+        break
+    else:
+        print("Lựa chọn không hợp lệ. Vui lòng chọn lại.")
